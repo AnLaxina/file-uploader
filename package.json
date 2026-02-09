@@ -1,5 +1,0 @@
-{
-	"dependencies": {
-		"@quixo3/prisma-session-store": "^3.1.19"
-	}
-}
