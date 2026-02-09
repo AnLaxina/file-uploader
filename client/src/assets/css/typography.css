@@ -1,0 +1,29 @@
+#root {
+  font-family: var(--font-rounded-sans), monospace;
+}
+
+#root h1 {
+  font-size: var(--font-size-6);
+}
+
+#root h2 {
+  font-size: var(--font-size-5);
+}
+#root h3 {
+  font-size: var(--font-size-4);
+}
+
+#root h4 {
+  font-size: var(--font-size-3);
+}
+
+#root h1,
+#root h2,
+#root h3,
+#root h4 {
+  font-weight: var(--font-weight-6);
+}
+
+#root p {
+  font-size: var(--font-size-2);
+}

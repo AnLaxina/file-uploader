@@ -1,0 +1,12 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#root header,
+#root footer {
+  padding: var(--size-3);
+}

@@ -1,0 +1,5 @@
+/* This file is only for imports. That way, putting it in main.jsx will only have 1 "main entry */
+@import url("open-props/style");
+@import url("./reset.css");
+@import url("./typography.css");
+@import url("./layout.css");
