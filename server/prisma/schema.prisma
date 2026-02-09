@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
@@ -13,8 +13,35 @@ datasource db {
   provider = "postgresql"
 }
 
-// Yeah this is just for testing, right now it works fine!
-model Chicken {
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  folders  Folder[]
+  files    File[]
+}
+
+model Folder {
+  id             Int      @id @default(autoincrement())
+  name           String
+  // Parent things
+  parent         Folder?  @relation("FolderHierarchy", fields: [parentFolderId], references: [id])
+  parentFolderId Int?
+  subfolders     Folder[] @relation("FolderHierarchy")
+
+  owner   User   @relation(fields: [ownerId], references: [id])
+  ownerId Int
+  files   File[]
+}
+
+model File {
   id   Int    @id @default(autoincrement())
   name String
+  url  String
+  size BigInt
+
+  folder   Folder @relation(fields: [folderId], references: [id])
+  folderId Int
+  owner    User   @relation(fields: [ownerId], references: [id])
+  ownerId  Int
 }
