@@ -1,0 +1,27 @@
+.navBar {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-6);
+}
+
+.navBar a {
+  padding: var(--size-4);
+  font-size: var(--size-4);
+  background-color: var(--accent);
+  color: black;
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-3);
+  text-decoration: none;
+}
+
+.navBar a:hover {
+  filter: brightness(85%);
+}
+
+.navBar a:active {
+  filter: brightness(75%);
+}
+
+.navBar a:focus {
+  outline: solid black var(--size-1);
+}
