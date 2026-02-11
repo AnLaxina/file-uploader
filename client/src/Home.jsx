@@ -1,3 +1,5 @@
+import { Outlet } from "react-router";
+
 export default function Home() {
   return (
     <>
@@ -5,10 +7,10 @@ export default function Home() {
         <h1>File Uploader</h1>
       </header>
       <main>
-        <p>Welcome to the home page!</p>
+        <Outlet />
       </main>
       <footer>
-        <p>2026 Anlaxina</p>
+        <p>2026 AnLaxina</p>
       </footer>
     </>
   );
