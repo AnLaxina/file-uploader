@@ -1,0 +1,21 @@
+.button {
+  padding: var(--size-4);
+  font-size: var(--size-4);
+  background-color: var(--accent);
+  color: black;
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-3);
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(85%);
+}
+
+.button:active {
+  filter: brightness(75%);
+}
+
+.button:focus {
+  outline: solid black var(--size-1);
+}
