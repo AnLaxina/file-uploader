@@ -8,6 +8,8 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { prisma } from "./lib/prisma.js";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 
+// Route imports
+import signupRoute from "./routes/signupRouter.js";
 const PORT = 3000;
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
@@ -21,8 +23,8 @@ app.use(
       maxAge: 7 * 24 * 60 * 1000,
     },
     secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     store: new PrismaSessionStore(prisma, {
       checkPeriod: 2 * 60 * 1000,
       dbRecordIdIsSessionId: true,
@@ -52,7 +54,7 @@ passport.use(new LocalStrategy(authUser));
 
 // Routes
 app.get("/", (req, res, next) => res.send("Hello!"));
-
+app.use(signupRoute);
 app.listen(PORT, (error) => {
   if (error) {
     console.error(error);
