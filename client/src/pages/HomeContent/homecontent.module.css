@@ -1,0 +1,21 @@
+.homeContentSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--size-4);
+  gap: var(--size-8);
+  min-height: 100%;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+@media (width <= 640px) {
+  .instructions {
+    text-align: center;
+  }
+}
