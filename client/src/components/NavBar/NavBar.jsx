@@ -6,10 +6,10 @@ export default function NavBar() {
     <nav>
       <ul className={styles.navBar}>
         <li>
-          <Link>Sign Up</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </li>
         <li>
-          <Link>Log in</Link>
+          <Link to="/login">Log in</Link>
         </li>
       </ul>
     </nav>
