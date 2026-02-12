@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: var(--size-3);
+  gap: var(--size-3);
+  align-items: center;
+  max-width: 80%;
+}
+
+input {
+  padding: var(--size-1);
+}
+
+section {
+  min-height: 100%;
+}
+
+.formSubmission {
+  display: flex;
+  gap: var(--size-4);
+}
+
+/* form .button {
+  display: flex-start;
+} */
