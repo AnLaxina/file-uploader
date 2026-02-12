@@ -1,7 +1,7 @@
 import "dotenv/config";
 import authUser from "./lib/auth.js";
 import express from "express";
-import expressSession from "express";
+import expressSession from "express-session";
 import cors from "cors";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
@@ -50,7 +50,10 @@ passport.deserializeUser(async (id, done) => {
 });
 passport.use(new LocalStrategy(authUser));
 
-app.listen((error) => {
+// Routes
+app.get("/", (req, res, next) => res.send("Hello!"));
+
+app.listen(PORT, (error) => {
   if (error) {
     console.error(error);
   }
