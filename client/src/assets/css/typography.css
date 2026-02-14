@@ -27,3 +27,11 @@
 #root p {
   font-size: var(--font-size-2);
 }
+
+.errorMessage {
+  color: var(--red-8);
+}
+
+.successMessage {
+  color: var(--green-8);
+}
