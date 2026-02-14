@@ -6,7 +6,7 @@ export function login(req, res, next) {
 
 // * Use this for protected routes
 export function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated) {
+  if (req.isAuthenticated()) {
     return next();
   }
   res.status(401).send({ message: "Not logged in!" });

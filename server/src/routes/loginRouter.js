@@ -8,5 +8,9 @@ loginRoute.post(
   passport.authenticate("local"),
   loginController.login,
 );
-
+loginRoute.get(
+  "/api/is-authenticated",
+  loginController.isLoggedIn,
+  (req, res, next) => res.send({ isAuthenticated: true }),
+);
 export default loginRoute;
