@@ -1,5 +1,6 @@
 .navBar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: var(--size-6);
 }
