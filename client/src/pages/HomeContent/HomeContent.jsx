@@ -1,7 +1,9 @@
 import styles from "./homecontent.module.css";
 import NavBar from "../../components/NavBar/NavBar.jsx";
+import { useLoaderData } from "react-router";
 
 export default function HomeContent() {
+  const isLoggedIn = useLoaderData();
   return (
     <section className={styles.homeContentSection}>
       <div className={styles.instructions}>
@@ -11,7 +13,7 @@ export default function HomeContent() {
           files on the cloud!
         </p>
       </div>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} />
     </section>
   );
 }
