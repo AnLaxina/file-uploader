@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-
+import isValidEmail from "../../lib/validUser.js";
 import axiosClient from "../../lib/axiosClient.js";
 export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -14,9 +14,14 @@ export default function SignUp() {
     axiosClient
       .post("/api/sign-up", formValues)
       .then(() => {
-        setErrorMessage("");
-        setIsSuccessful(true);
-        navigate("/");
+        if (!isValidEmail) {
+          setErrorMessage("Must be a valid email!");
+          setIsSuccessful(false);
+        } else {
+          setErrorMessage("");
+          setIsSuccessful(true);
+          navigate("/");
+        }
       })
       .catch((error) => {
         const data = error.response.data;
