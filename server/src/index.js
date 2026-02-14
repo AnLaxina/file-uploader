@@ -54,6 +54,15 @@ passport.use(new LocalStrategy(authUser));
 
 // Routes
 app.get("/", (req, res, next) => res.send("Hello!"));
+// Yeah.. for logging out I'm not writing a separate controller and route file for it...
+app.get("/api/logout", (req, res, next) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
+    }
+    res.send({ message: "Logged out!" });
+  });
+});
 app.use(signupRoute);
 app.listen(PORT, (error) => {
   if (error) {

@@ -8,6 +8,9 @@ const router = new createBrowserRouter([
   {
     path: "/",
     Component: Home,
+    loader: (e) => {
+      console.log(e);
+    },
     children: [
       {
         path: "/",

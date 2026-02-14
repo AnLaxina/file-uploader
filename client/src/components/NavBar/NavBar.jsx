@@ -1,7 +1,14 @@
 import styles from "./navbar.module.css";
+import axiosClient from "../../lib/axiosClient.js";
 import { Link } from "react-router";
 
 export default function NavBar() {
+  function logout() {
+    axiosClient
+      .get("/api/logout")
+      .then((response) => console.log(response.data))
+      .catch((error) => console.error(error));
+  }
   return (
     <nav>
       <ul className={styles.navBar}>
@@ -14,6 +21,11 @@ export default function NavBar() {
           <Link to="/login" className="button">
             Log in
           </Link>
+        </li>
+        <li>
+          <button type="button" onClick={logout} className="button">
+            Logout
+          </button>
         </li>
       </ul>
     </nav>
