@@ -3,7 +3,8 @@ import Home from "./Home";
 import HomeContent from "./pages/HomeContent/HomeContent";
 import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
-import { isLoggedIn } from "./lib/loaders.js";
+import ViewFiles from "./pages/ViewFiles/ViewFiles";
+import { isLoggedIn, checkPage } from "./lib/loaders.js";
 
 const router = new createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = new createBrowserRouter([
         path: "/login",
         Component: Login,
       },
+      { path: "/view-files", Component: ViewFiles, loader: checkPage },
     ],
   },
 ]);
