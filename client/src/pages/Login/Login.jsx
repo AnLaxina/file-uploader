@@ -14,7 +14,7 @@ export default function Login() {
       .post("/api/login", formValues)
       .then(() => {
         setErrorMessage("");
-        navigate("/");
+        navigate("/", { replace: true });
       })
       .catch(() => setErrorMessage("Invalid email or password!"));
   }

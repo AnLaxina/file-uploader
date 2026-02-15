@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 
 export default function HomeContent() {
   const { isAuthenticated, user } = useLoaderData();
+
   return (
     <section className={styles.homeContentSection}>
       {user && <h2>Welcome back {user.email}!</h2>}
@@ -14,7 +15,7 @@ export default function HomeContent() {
           files on the cloud!
         </p>
       </div>
-      <NavBar isLoggedIn={isAuthenticated} />
+      <NavBar loggedIn={isAuthenticated} />
     </section>
   );
 }
