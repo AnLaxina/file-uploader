@@ -23,3 +23,9 @@ section {
 /* form .button {
   display: flex-start;
 } */
+
+@media (width <= 640px) {
+  input {
+    font-size: var(--size-3);
+  }
+}

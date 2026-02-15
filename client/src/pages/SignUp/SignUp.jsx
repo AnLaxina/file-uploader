@@ -40,11 +40,21 @@ export default function SignUp() {
         {isSuccessful && (
           <h4 className="successMessage">Registration successful!</h4>
         )}
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required />
 
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" required />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          required
+        />
 
         <div className="formSubmission">
           <Link to="/" className="button">
