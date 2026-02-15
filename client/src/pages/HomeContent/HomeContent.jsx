@@ -3,9 +3,10 @@ import NavBar from "../../components/NavBar/NavBar.jsx";
 import { useLoaderData } from "react-router";
 
 export default function HomeContent() {
-  const isLoggedIn = useLoaderData();
+  const { isAuthenticated, user } = useLoaderData();
   return (
     <section className={styles.homeContentSection}>
+      {user && <h2>Welcome back {user.email}!</h2>}
       <div className={styles.instructions}>
         <h3>Instructions</h3>
         <p>
@@ -13,7 +14,7 @@ export default function HomeContent() {
           files on the cloud!
         </p>
       </div>
-      <NavBar isLoggedIn={isLoggedIn} />
+      <NavBar isLoggedIn={isAuthenticated} />
     </section>
   );
 }

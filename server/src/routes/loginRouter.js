@@ -11,6 +11,6 @@ loginRoute.post(
 loginRoute.get(
   "/api/is-authenticated",
   loginController.isLoggedIn,
-  (req, res, next) => res.send({ isAuthenticated: true }),
+  (req, res, next) => res.send({ isAuthenticated: true, user: req.user }),
 );
 export default loginRoute;
