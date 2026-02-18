@@ -21,7 +21,8 @@ app.use(passport.initialize());
 app.use(
   expressSession({
     cookie: {
-      maxAge: 7 * 24 * 60 * 1000,
+      // 864,000,000 milliseconds is 10 days
+      maxAge: 864000000,
     },
     secret: process.env.SECRET,
     resave: false,
