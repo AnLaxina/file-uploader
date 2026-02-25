@@ -11,6 +11,8 @@ import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 // Route imports
 import signupRoute from "./routes/signupRouter.js";
 import loginRoute from "./routes/loginRouter.js";
+import fileRoute from "./routes/fileRouter.js";
+
 const PORT = 3000;
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
@@ -65,8 +67,11 @@ app.get("/api/logout", (req, res, next) => {
     res.send({ message: "Logged out!" });
   });
 });
+
 app.use(signupRoute);
 app.use(loginRoute);
+app.use(fileRoute);
+
 app.listen(PORT, (error) => {
   if (error) {
     console.error(error);
