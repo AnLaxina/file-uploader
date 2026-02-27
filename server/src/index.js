@@ -12,6 +12,7 @@ import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import signupRoute from "./routes/signupRouter.js";
 import loginRoute from "./routes/loginRouter.js";
 import fileRoute from "./routes/fileRouter.js";
+import folderRoute from "./routes/folderRouter.js";
 
 const PORT = 3000;
 const app = express();
@@ -71,6 +72,7 @@ app.get("/api/logout", (req, res, next) => {
 app.use(signupRoute);
 app.use(loginRoute);
 app.use(fileRoute);
+app.use(folderRoute);
 
 app.listen(PORT, (error) => {
   if (error) {

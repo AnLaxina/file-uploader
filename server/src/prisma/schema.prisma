@@ -23,7 +23,7 @@ model User {
 
 model Folder {
   id             Int      @id @default(autoincrement())
-  name           String
+  name           String   @default("New Folder")
   // Parent things
   parent         Folder?  @relation("FolderHierarchy", fields: [parentFolderId], references: [id])
   parentFolderId Int?
