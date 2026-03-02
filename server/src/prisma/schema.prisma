@@ -40,9 +40,9 @@ model File {
   fileKey String
   size    BigInt
 
-  folder   Folder @relation(fields: [folderId], references: [id])
-  folderId Int
-  owner    User   @relation(fields: [ownerId], references: [id])
+  folder   Folder? @relation(fields: [folderId], references: [id])
+  folderId Int?
+  owner    User    @relation(fields: [ownerId], references: [id])
   ownerId  Int
 }
 
