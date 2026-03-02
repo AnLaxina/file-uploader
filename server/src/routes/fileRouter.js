@@ -14,4 +14,10 @@ fileRoute.post(
   fileController.addSingleFile,
 );
 
+fileRoute.get(
+  "/api/get-single-file/:fileId",
+  isLoggedIn,
+  fileController.getSingleFile,
+);
+
 export default fileRoute;

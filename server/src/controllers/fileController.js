@@ -4,7 +4,8 @@ import {
   PutObjectCommand,
   GetObjectCommand,
 } from "@aws-sdk/client-s3";
-
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { registerUser } from "./signupController.js";
 // S3 setup
 const s3 = new S3Client({
   region: "auto",
@@ -50,6 +51,31 @@ export async function addSingleFile(req, res, next) {
     message: "File uploaded!",
     // Yeah... have to convert it to a Number as JSON doesn't support BigInts
     newFile: { ...newFile, size: Number(req.file.size) },
+  });
+}
+
+export async function getSingleFile(req, res, next) {
+  if (!req.params || !req.params.fileId) {
+    return res.status(400).send({ message: "Enter a valid fileId" });
+  }
+  const file = await prisma.file.findUnique({
+    where: { id: Number(req.params.fileId), ownerId: req.user.id },
+  });
+  if (!file) {
+    return res.status(400).send({ message: "File not found!" });
+  }
+
+  const signedUrl = await getSignedUrl(
+    s3,
+    new GetObjectCommand({
+      Bucket: process.env.R2_BUCKET,
+      Key: file.fileKey,
+    }),
+    { expiresIn: 3600 },
+  );
+  res.send({
+    file: { ...file, size: Number(file.size) },
+    downloadUrl: signedUrl,
   });
 }
 
