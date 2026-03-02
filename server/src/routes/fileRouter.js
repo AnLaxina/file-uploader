@@ -20,4 +20,10 @@ fileRoute.get(
   fileController.getSingleFile,
 );
 
+fileRoute.delete(
+  "/api/delete-single-file/:fileId",
+  isLoggedIn,
+  fileController.deleteSingleFile,
+);
+
 export default fileRoute;

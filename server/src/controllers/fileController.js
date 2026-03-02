@@ -3,6 +3,7 @@ import {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { registerUser } from "./signupController.js";
@@ -73,9 +74,40 @@ export async function getSingleFile(req, res, next) {
     }),
     { expiresIn: 3600 },
   );
+
+  const deleteUrl = await getSignedUrl(
+    s3,
+    new DeleteObjectCommand({
+      Bucket: process.env.R2_BUCKET,
+      Key: file.fileKey,
+    }),
+    { expiresIn: 3600 },
+  );
+
   res.send({
     file: { ...file, size: Number(file.size) },
     downloadUrl: signedUrl,
+    deleteUrl: deleteUrl,
+  });
+}
+
+export async function deleteSingleFile(req, res, next) {
+  if (!req.params || !req.params.fileId) {
+    return res.status(400).send({ message: "Enter a valid fileId" });
+  }
+  const deletedFile = await prisma.file.delete({
+    where: { id: Number(req.params.fileId), ownerId: req.user.id },
+  });
+
+  if (!deletedFile) {
+    return res
+      .status(400)
+      .send({ message: "File not deleted as it doesn't exist!" });
+  }
+
+  return res.send({
+    deletedFile: { ...deletedFile, size: Number(deletedFile.size) },
+    message: "File successfully deleted!",
   });
 }
 
