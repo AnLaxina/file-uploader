@@ -7,3 +7,9 @@
   background-color: white;
   border-radius: var(--radius-4);
 }
+
+@media (width >= 640px) {
+  .folder {
+    padding: var(--size-8);
+  }
+}

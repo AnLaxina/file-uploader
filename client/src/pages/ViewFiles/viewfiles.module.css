@@ -1,25 +1,21 @@
 .viewFilesSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--stone-4);
   padding: var(--size-1);
   max-width: 100dvw;
 }
 
-.viewFilesSection section {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  background-color: red;
-  max-height: 85dvh;
-  padding: var(--size-4);
-}
-
 .folders {
   display: grid;
   overflow-y: auto;
+  flex-grow: 1;
+  place-items: center;
   gap: var(--size-4);
   max-width: 90dvw;
   max-height: 80dvh;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 @media (width >= 640px) {
