@@ -8,7 +8,7 @@ const uploads = multer();
 
 const fileRoute = Router();
 fileRoute.post(
-  "/api/post-single-file",
+  "/api/post-single-file/:folderId",
   isLoggedIn,
   uploads.single("file"),
   fileController.addSingleFile,
@@ -24,6 +24,12 @@ fileRoute.delete(
   "/api/delete-single-file/:fileId",
   isLoggedIn,
   fileController.deleteSingleFile,
+);
+
+fileRoute.get(
+  "/api/get-all-files/:folderId",
+  isLoggedIn,
+  fileController.getAllFilesFromFolder,
 );
 
 export default fileRoute;

@@ -18,6 +18,19 @@ const s3 = new S3Client({
 
 // * To upload things to the cloud, it would just be req.file.buffer
 
+export async function getAllFilesFromFolder(req, res, next) {
+  // TODO: Make it so that a folderId would be the route... yeah.. so /api/get-all-files-from-folder
+  const files = await prisma.file.findMany({
+    where: { folderId: Number(req.params.folderId), ownerId: req.user.id },
+  });
+
+  const convertedFiles = files.map((file) => {
+    return { ...file, size: Number(file.size) };
+  });
+
+  res.status(200).send({ files: convertedFiles });
+}
+
 export async function addSingleFile(req, res, next) {
   if (!req.body) {
     return res.status(400).send({ message: "Enter a file to upload." });
@@ -30,7 +43,7 @@ export async function addSingleFile(req, res, next) {
       size: req.file.size,
       fileKey: newFileKey,
       ownerId: req.user.id,
-      folderId: parseInt(req.body.folderId) || undefined,
+      folderId: parseInt(req.params.folderId) || undefined,
       folder: req.body.folderObject || undefined,
     },
   });
