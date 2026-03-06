@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 import ViewFiles from "./pages/ViewFiles/ViewFiles";
 import { isLoggedIn, checkPage } from "./lib/loaders.js";
+import ViewFolder from "./pages/ViewFolder/ViewFolder.jsx";
 
 const router = new createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = new createBrowserRouter([
         Component: Login,
       },
       { path: "/view-files", Component: ViewFiles, loader: checkPage },
+      { path: "/view-folder", Component: ViewFolder, loader: checkPage },
     ],
   },
 ]);
