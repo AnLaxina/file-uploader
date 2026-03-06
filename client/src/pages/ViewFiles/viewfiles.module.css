@@ -18,6 +18,10 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
+.folders p {
+  font-weight: var(--font-weight-6);
+}
+
 @media (width >= 640px) {
   .folders {
     padding: var(--size-6);
