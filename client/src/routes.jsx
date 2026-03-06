@@ -26,7 +26,11 @@ const router = new createBrowserRouter([
         Component: Login,
       },
       { path: "/view-files", Component: ViewFiles, loader: checkPage },
-      { path: "/view-folder", Component: ViewFolder, loader: checkPage },
+      {
+        path: "/view-folder/:folderName/:folderId",
+        Component: ViewFolder,
+        loader: checkPage,
+      },
     ],
   },
 ]);

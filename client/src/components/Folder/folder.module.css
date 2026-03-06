@@ -9,6 +9,11 @@
   border-radius: var(--radius-4);
 }
 
+.folder:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+}
+
 .folderHeader {
   display: flex;
   justify-content: end;
