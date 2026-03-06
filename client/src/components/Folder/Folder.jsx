@@ -1,5 +1,5 @@
 import styles from "./folder.module.css";
-import { Folder as FolderIcon } from "lucide-react";
+import { CircleX, Folder as FolderIcon } from "lucide-react";
 
 export default function Folder({
   title = "New Folder",
@@ -8,8 +8,15 @@ export default function Folder({
 }) {
   return (
     <article className={styles.folder}>
-      <FolderIcon />
-      <h4>{title}</h4>
+      <div className={styles.folderHeader}>
+        <button type="button">
+          <CircleX />
+        </button>
+      </div>
+      <div className={styles.folderBottom}>
+        <FolderIcon />
+        <h4>{title}</h4>
+      </div>
     </article>
   );
 }

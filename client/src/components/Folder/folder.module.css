@@ -1,15 +1,37 @@
 .folder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   min-height: 100px;
-  padding: var(--size-6);
+  padding: var(--size-3);
   gap: var(--size-2);
   background-color: white;
   border-radius: var(--radius-4);
 }
 
+.folderHeader {
+  display: flex;
+  justify-content: end;
+  min-width: 100%;
+}
+
+.folderHeader button {
+  background: none;
+  border: none;
+}
+
+.folderHeader button:hover {
+  cursor: pointer;
+}
+
+.folderBottom {
+  display: flex;
+  gap: var(--size-3);
+  align-items: center;
+}
+
 @media (width >= 640px) {
   .folder {
-    padding: var(--size-8);
+    padding: var(--size-5);
   }
 }
