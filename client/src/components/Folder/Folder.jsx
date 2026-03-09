@@ -16,10 +16,16 @@ export default function Folder({
     const newTitle = title.replaceAll(" ", "-");
     navigate(`/view-folder/${newTitle}/${folderId}`);
   }
+
+  function deleteFolder() {
+    console.log("Delete this folder!");
+  }
+
+  // TODO: Instead of a physical delete button, select a folder instead and show actions to delete it via a modal
   return (
     <article className={styles.folder} onClick={enterFolder}>
       <div className={styles.folderHeader}>
-        <button type="button">
+        <button type="button" onClick={deleteFolder}>
           <CircleX />
         </button>
       </div>

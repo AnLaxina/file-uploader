@@ -1,0 +1,29 @@
+.viewFilesSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--stone-4);
+  padding: var(--size-1);
+  max-width: 100dvw;
+}
+
+#header {
+  /* Welp.. gonna leave the !important here... lol */
+  font-weight: var(--font-weight-5) !important;
+}
+
+.files {
+  display: grid;
+  flex-grow: 1;
+  overflow-y: auto;
+  gap: var(--size-4);
+  max-width: 90dvw;
+  max-height: 80dvh;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+@media (width >= 640px) {
+  .files {
+    align-items: center;
+  }
+}
