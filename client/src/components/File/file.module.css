@@ -1,0 +1,22 @@
+.file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--stone-2);
+  padding: var(--size-4);
+  gap: var(--size-3);
+  max-width: 100%;
+}
+
+.emptyButton {
+  border: none;
+  border-radius: var(--radius-2);
+}
+
+#fileName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  font-size: var(--font-size-2) !important;
+}
