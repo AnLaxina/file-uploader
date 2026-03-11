@@ -17,9 +17,9 @@ export default function ViewFolder() {
   }, [folderId]);
 
   function loadFiles() {
-    return files.map((file) => {
-      // TODO: Lol create a file component
-    });
+    return files.map((file) => (
+      <File key={file.id} fileName={file.name} fileId={file.id} />
+    ));
   }
 
   return (
@@ -27,12 +27,11 @@ export default function ViewFolder() {
       <h2 id={styles.header}>Viewing Folder: {folderName}</h2>
 
       <div className={styles.files}>
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
-        <File fileName="chicken sauce guy is the best guy in the entire world!" />
+        {files.length === 0 ? (
+          <p>No files found! Try adding one!</p>
+        ) : (
+          loadFiles()
+        )}
       </div>
     </section>
   );
