@@ -1,4 +1,6 @@
 import axios from "../../lib/axiosClient.js";
+import convertBytes from "../../lib/bytesConversion.js";
+import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
 export default function InfoPopup({
@@ -37,10 +39,21 @@ export default function InfoPopup({
   }, [fileId, open]);
 
   function loadFileData() {
+    const formattedDate = format(currentFile.uploadDate, "PPpp");
     return (
       <div>
-        <p>{currentFile.name}</p>
-        <p>{currentFile.size}</p>
+        <p>
+          <strong>File Name: </strong>
+          {currentFile.name}
+        </p>
+        <p>
+          <strong>File Size: </strong>
+          {convertBytes(currentFile.size)}
+        </p>
+        <p>
+          <strong>Upload Date: </strong>
+          {formattedDate}
+        </p>
       </div>
     );
   }
