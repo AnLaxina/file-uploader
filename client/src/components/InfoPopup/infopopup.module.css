@@ -1,0 +1,27 @@
+.popupWindow:open {
+  display: flex;
+  gap: var(--size-4);
+  padding: var(--size-5);
+  flex-direction: column;
+}
+
+.popupButtons {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-6);
+}
+
+.popupButtons > a {
+  padding: var(--size-2);
+  font-weight: var(--font-weight-7);
+  background-color: var(--stone-2);
+}
+
+.fileContainer p {
+  display: flex;
+  gap: var(--size-2);
+  text-align: center;
+}
+.fileContainer strong {
+  font-weight: var(--font-weight-7);
+}

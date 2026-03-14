@@ -1,5 +1,6 @@
 import axios from "../../lib/axiosClient.js";
 import convertBytes from "../../lib/bytesConversion.js";
+import styles from "./infopopup.module.css";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 
@@ -41,13 +42,13 @@ export default function InfoPopup({
   function loadFileData() {
     const formattedDate = format(currentFile.uploadDate, "PPpp");
     return (
-      <div>
+      <div className={styles.fileContainer}>
         <p>
-          <strong>File Name: </strong>
+          <strong>Name: </strong>
           {currentFile.name}
         </p>
         <p>
-          <strong>File Size: </strong>
+          <strong>Size: </strong>
           {convertBytes(currentFile.size)}
         </p>
         <p>
@@ -59,8 +60,25 @@ export default function InfoPopup({
   }
 
   return (
-    <dialog ref={domElement} onClose={setIsOpen}>
-      {isFile && currentFile ? <>{loadFileData()}</> : <p>It's a folder</p>}
+    <dialog ref={domElement} onClose={setIsOpen} className={styles.popupWindow}>
+      {isFile && currentFile ? (
+        <>
+          {loadFileData()}
+          <div className={styles.popupButtons}>
+            <a
+              className="popupButton"
+              href={downloadUrl}
+              target="_blank"
+              download
+            >
+              Download File
+            </a>
+            <a>Delete File</a>
+          </div>
+        </>
+      ) : (
+        <p>It's a folder</p>
+      )}
     </dialog>
   );
 }
