@@ -3,6 +3,7 @@ import convertBytes from "../../lib/bytesConversion.js";
 import styles from "./infopopup.module.css";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
 
 export default function InfoPopup({
   domElement = null,
@@ -39,6 +40,11 @@ export default function InfoPopup({
     retrieveFileData();
   }, [fileId, open]);
 
+  function closePopup() {
+    setIsOpen(false);
+    domElement.current.close();
+  }
+
   function loadFileData() {
     const formattedDate = format(currentFile.uploadDate, "PPpp");
     return (
@@ -61,6 +67,11 @@ export default function InfoPopup({
 
   return (
     <dialog ref={domElement} onClose={setIsOpen} className={styles.popupWindow}>
+      <div className={styles.popupHeader}>
+        <button type="button" onClick={closePopup}>
+          <X size={28} />
+        </button>
+      </div>
       {isFile && currentFile ? (
         <>
           {loadFileData()}

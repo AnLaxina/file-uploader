@@ -12,18 +12,19 @@ export default function File({ fileId, fileName = "New File", fileKey }) {
     dialogRef.current.showModal();
   }
   return (
-    <button type="button" className={styles.emptyButton} onClick={openPopup}>
-      <article className={styles.file}>
-        <FileText size={48} />
-        <h4 id={styles.fileName}>{fileName}</h4>
-      </article>
-
+    <>
+      <button type="button" className={styles.emptyButton} onClick={openPopup}>
+        <article className={styles.file}>
+          <FileText size={48} />
+          <h4 id={styles.fileName}>{fileName}</h4>
+        </article>
+      </button>
       <InfoPopup
         domElement={dialogRef}
         fileId={fileId}
         open={isDialogOpen}
         setIsOpen={() => setIsDialogOpen(false)}
       />
-    </button>
+    </>
   );
 }

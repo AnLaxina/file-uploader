@@ -5,6 +5,16 @@
   flex-direction: column;
 }
 
+.popupHeader {
+  display: flex;
+  justify-content: end;
+}
+
+.popupHeader button {
+  background: none;
+  border: none;
+}
+
 .popupButtons {
   display: flex;
   justify-content: center;
