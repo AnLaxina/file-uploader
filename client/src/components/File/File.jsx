@@ -3,7 +3,12 @@ import { useRef, useState } from "react";
 import styles from "./file.module.css";
 import InfoPopup from "../InfoPopup/InfoPopup.jsx";
 
-export default function File({ fileId, fileName = "New File", fileKey }) {
+export default function File({
+  fileId,
+  fileName = "New File",
+  currentFiles,
+  setFiles,
+}) {
   const dialogRef = useRef(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -24,6 +29,8 @@ export default function File({ fileId, fileName = "New File", fileKey }) {
         fileId={fileId}
         open={isDialogOpen}
         setIsOpen={() => setIsDialogOpen(false)}
+        currentFiles={currentFiles}
+        setFiles={setFiles}
       />
     </>
   );

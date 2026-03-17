@@ -116,6 +116,13 @@ export async function deleteSingleFile(req, res, next) {
       .send({ message: "File not deleted as it doesn't exist!" });
   }
 
+  await s3.send(
+    new DeleteObjectCommand({
+      Bucket: process.env.R2_BUCKET,
+      Key: deletedFile.fileKey,
+    }),
+  );
+
   return res.send({
     deletedFile: { ...deletedFile, size: Number(deletedFile.size) },
     message: "File successfully deleted!",

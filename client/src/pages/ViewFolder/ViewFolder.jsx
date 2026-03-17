@@ -18,7 +18,13 @@ export default function ViewFolder() {
 
   function loadFiles() {
     return files.map((file) => (
-      <File key={file.id} fileName={file.name} fileId={file.id} />
+      <File
+        key={file.id}
+        fileName={file.name}
+        fileId={file.id}
+        currentFiles={files}
+        setFiles={setFiles}
+      />
     ));
   }
 
