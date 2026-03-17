@@ -22,6 +22,11 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
+.dialogHeader {
+  align-self: flex-end;
+  padding: var(--size-1);
+}
+
 @media (width >= 640px) {
   .files {
     align-items: center;

@@ -11,15 +11,27 @@
   text-decoration: none;
 }
 
-.button:hover {
+.emptyButton {
+  background: none;
+  border: none;
+}
+
+.button:hover,
+.emptyButton:hover {
   filter: brightness(85%);
   cursor: pointer;
 }
 
-.button:active {
+.button:active,
+.emptyButton:active {
   filter: brightness(75%);
 }
 
-.button:focus {
+.button:focus,
+.emptyButton:focus {
   outline: solid black var(--size-1);
+}
+
+.emptyButton:focus {
+  border-radius: var(--radius-round);
 }
