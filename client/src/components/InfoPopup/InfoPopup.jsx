@@ -7,32 +7,28 @@ import { X } from "lucide-react";
 
 export default function InfoPopup({
   domElement = null,
+  fileId,
+  currentFiles,
+  setFiles,
+  isFile = true,
+  folderId,
   open = false,
   setIsOpen,
-  isFile = true,
-  fileId,
-  folderId,
 }) {
-  // TODO: Work on the popup. Display information to get the delete, download, etc.
-
   const [currentFile, setCurrentFile] = useState(null);
   const [downloadUrl, setDownloadUrl] = useState(null);
-  const [deleteUrl, setDeleteUrl] = useState(null);
 
   useEffect(() => {
     async function retrieveFileData() {
       if (!open) {
         setCurrentFile(null);
         setDownloadUrl(null);
-        setDeleteUrl(null);
         return;
       }
       try {
         const response = await axios.get(`/api/get-single-file/${fileId}`);
-
         setCurrentFile(response.data.file);
         setDownloadUrl(response.data.downloadUrl);
-        setDeleteUrl(response.data.deleteUrl);
       } catch (error) {
         console.error(error);
       }
@@ -65,6 +61,17 @@ export default function InfoPopup({
     );
   }
 
+  function deleteFile(event) {
+    event.preventDefault();
+    axios
+      .delete(`/api/delete-single-file/${fileId}`)
+      .then((data) => {
+        console.log(data.response);
+        setFiles(currentFiles.filter((file) => file.id !== fileId));
+      })
+      .catch((error) => console.error(error));
+  }
+
   return (
     <dialog ref={domElement} onClose={setIsOpen} className={styles.popupWindow}>
       <div className={styles.popupHeader}>
@@ -76,15 +83,10 @@ export default function InfoPopup({
         <>
           {loadFileData()}
           <div className={styles.popupButtons}>
-            <a
-              className="popupButton"
-              href={downloadUrl}
-              target="_blank"
-              download
-            >
+            <a href={downloadUrl} target="_blank" download>
               Download File
             </a>
-            <a>Delete File</a>
+            <a onClick={(e) => deleteFile(e)}>Delete File</a>
           </div>
         </>
       ) : (

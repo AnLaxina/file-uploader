@@ -25,6 +25,8 @@
   padding: var(--size-2);
   font-weight: var(--font-weight-7);
   background-color: var(--stone-2);
+  color: var(--black-9);
+  text-decoration: none;
 }
 
 .fileContainer p {
