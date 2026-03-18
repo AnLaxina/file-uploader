@@ -1,7 +1,7 @@
 import styles from "./viewfolder.module.css";
 import File from "../../components/File/File.jsx";
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import axiosClient from "../../lib/axiosClient";
 import { CircleX } from "lucide-react";
 
@@ -11,6 +11,7 @@ export default function ViewFolder() {
   const formRef = useRef(undefined);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
+  const navigate = useNavigate();
   const [isValid, setIsValid] = useState(true);
   const { folderName, folderId } = useParams();
   // In Bytes, 24 million bytes is equivalent to 24 MB
@@ -90,14 +91,19 @@ export default function ViewFolder() {
         )}
       </div>
 
-      <button
-        type="button"
-        className="button"
-        command="show-modal"
-        commandfor="uploadFileDialog"
-      >
-        Add File
-      </button>
+      <div className={styles.viewFolderButtons}>
+        <button type="button" className="button" onClick={() => navigate(-1)}>
+          Go Back
+        </button>
+        <button
+          type="button"
+          className="button"
+          command="show-modal"
+          commandfor="uploadFileDialog"
+        >
+          Add File
+        </button>
+      </div>
 
       {/* For this, I'll just add a simple dialog cause yeah I don't think I gotta make this into a component */}
       <dialog

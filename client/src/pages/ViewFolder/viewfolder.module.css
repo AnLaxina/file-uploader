@@ -40,6 +40,11 @@
   font-weight: var(--font-weight-6);
 }
 
+.viewFolderButtons {
+  display: flex;
+  gap: var(--size-4);
+}
+
 @media (width >= 640px) {
   .files {
     align-items: center;
