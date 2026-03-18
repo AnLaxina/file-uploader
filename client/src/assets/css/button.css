@@ -1,4 +1,5 @@
-.button {
+.button,
+.disabledButton {
   display: flex;
   align-items: center;
   padding: var(--size-3);
@@ -11,6 +12,10 @@
   text-decoration: none;
 }
 
+.disabledButton {
+  filter: brightness(80%);
+}
+
 .emptyButton {
   background: none;
   border: none;
@@ -20,6 +25,10 @@
 .emptyButton:hover {
   filter: brightness(85%);
   cursor: pointer;
+}
+
+.disabledButton:hover {
+  cursor: not-allowed;
 }
 
 .button:active,
