@@ -1,7 +1,7 @@
 .folder {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100px;
   padding: var(--size-3);
   gap: var(--size-2);
@@ -11,28 +11,7 @@
 
 .folder:hover {
   cursor: pointer;
-  filter: brightness(90%);
-}
-
-.folderHeader {
-  display: flex;
-  justify-content: end;
-  min-width: 100%;
-}
-
-.folderHeader button {
-  background: none;
-  border: none;
-}
-
-.folderHeader button:hover {
-  cursor: pointer;
-}
-
-.folderBottom {
-  display: flex;
-  gap: var(--size-3);
-  align-items: center;
+  filter: brightness(95%);
 }
 
 @media (width >= 640px) {

@@ -24,15 +24,8 @@ export default function Folder({
   // TODO: Instead of a physical delete button, select a folder instead and show actions to delete it via a modal
   return (
     <article className={styles.folder} onClick={enterFolder}>
-      <div className={styles.folderHeader}>
-        <button type="button" onClick={deleteFolder}>
-          <CircleX />
-        </button>
-      </div>
-      <div className={styles.folderBottom}>
-        <FolderIcon />
-        <h4>{title}</h4>
-      </div>
+      <FolderIcon size={48} />
+      <h4>{title}</h4>
     </article>
   );
 }

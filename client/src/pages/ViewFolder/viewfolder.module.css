@@ -1,8 +1,8 @@
-.viewFilesSection {
+.viewFolderSection {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--stone-4);
+  background-color: var(--stone-3);
   padding: var(--size-1);
   max-width: 100dvw;
 }
