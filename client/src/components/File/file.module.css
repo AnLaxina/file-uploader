@@ -13,6 +13,11 @@
   border-radius: var(--radius-2);
 }
 
+.emptyButton:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+
 #fileName {
   white-space: nowrap;
   overflow: hidden;

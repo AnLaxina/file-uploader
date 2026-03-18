@@ -75,7 +75,7 @@ export default function InfoPopup({
   return (
     <dialog ref={domElement} onClose={setIsOpen} className={styles.popupWindow}>
       <div className={styles.popupHeader}>
-        <button type="button" onClick={closePopup}>
+        <button type="button" onClick={closePopup} className="emptyButton">
           <X size={28} />
         </button>
       </div>
@@ -86,7 +86,9 @@ export default function InfoPopup({
             <a href={downloadUrl} target="_blank" download>
               Download File
             </a>
-            <a onClick={(e) => deleteFile(e)}>Delete File</a>
+            <a onClick={(e) => deleteFile(e)} href={"delete-file"}>
+              Delete File
+            </a>
           </div>
         </>
       ) : (

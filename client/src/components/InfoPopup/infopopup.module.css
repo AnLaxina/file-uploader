@@ -7,7 +7,7 @@
 
 .popupHeader {
   display: flex;
-  justify-content: end;
+  align-self: end;
 }
 
 .popupHeader button {
@@ -27,6 +27,11 @@
   background-color: var(--stone-2);
   color: var(--black-9);
   text-decoration: none;
+}
+
+.popupButtons > a:hover {
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 .fileContainer p {
