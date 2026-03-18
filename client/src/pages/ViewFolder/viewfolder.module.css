@@ -27,6 +27,19 @@
   padding: var(--size-1);
 }
 
+.validMessage {
+  color: var(--green-7);
+}
+
+.invalidMessage {
+  color: var(--red-7);
+}
+
+.validMessage,
+.invalidMessage {
+  font-weight: var(--font-weight-6);
+}
+
 @media (width >= 640px) {
   .files {
     align-items: center;
