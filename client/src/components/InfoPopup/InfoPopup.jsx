@@ -3,6 +3,7 @@ import convertBytes from "../../lib/bytesConversion.js";
 import styles from "./infopopup.module.css";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { X } from "lucide-react";
 
 export default function InfoPopup({
@@ -11,12 +12,15 @@ export default function InfoPopup({
   currentFiles,
   setFiles,
   isFile = true,
+  folderName = "New Folder",
+  folderUrl,
   folderId,
   open = false,
   setIsOpen,
 }) {
   const [currentFile, setCurrentFile] = useState(null);
   const [downloadUrl, setDownloadUrl] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function retrieveFileData() {
@@ -72,6 +76,11 @@ export default function InfoPopup({
       .catch((error) => console.error(error));
   }
 
+  function enterFolder() {
+    console.log(folderUrl);
+    navigate(folderUrl);
+  }
+
   return (
     <dialog ref={domElement} onClose={setIsOpen} className={styles.popupWindow}>
       <div className={styles.popupHeader}>
@@ -92,7 +101,17 @@ export default function InfoPopup({
           </div>
         </>
       ) : (
-        <p>It's a folder</p>
+        <>
+          <h3>Folder: {folderName}</h3>
+          <div className={styles.popupButtons}>
+            <button type="button" className="button" onClick={enterFolder}>
+              Enter
+            </button>
+            <button type="button" className="button">
+              Delete
+            </button>
+          </div>
+        </>
       )}
     </dialog>
   );

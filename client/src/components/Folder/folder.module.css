@@ -6,12 +6,17 @@
   padding: var(--size-3);
   gap: var(--size-2);
   background-color: white;
+  border: none;
   border-radius: var(--radius-4);
 }
 
 .folder:hover {
   cursor: pointer;
   filter: brightness(95%);
+}
+
+.folder:focus {
+  outline-color: black;
 }
 
 @media (width >= 640px) {
