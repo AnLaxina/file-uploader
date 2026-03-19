@@ -23,7 +23,7 @@ folderRoute.delete(
 );
 
 folderRoute.patch(
-  "/api/update-single-folder",
+  "/api/update-single-folder/:folderId",
   isLoggedIn,
   folderController.updateSingleFolder,
 );

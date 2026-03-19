@@ -43,11 +43,12 @@ export async function updateSingleFolder(req, res, next) {
       .status(400)
       .send({ message: "Enter the folder id and/or the updated name." });
   }
-  const selectedFolderId = req.body.selectedFolderId;
+
+  const folderId = Number(req.params.folderId);
   const updatedFolderName = req.body.updatedFolderName;
 
   const updatedFolder = await prisma.folder.update({
-    where: { id: selectedFolderId },
+    where: { id: folderId },
     data: { name: updatedFolderName },
   });
 
