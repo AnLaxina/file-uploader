@@ -13,12 +13,13 @@ export default function InfoPopup({
   setFiles,
   isFile = true,
   folderName = "New Folder",
-  folderUrl,
+  setFolderName,
   folderId,
   open = false,
   setIsOpen,
 }) {
   const [currentFile, setCurrentFile] = useState(null);
+  const [renameOn, setRenameOn] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState(null);
   const navigate = useNavigate();
 
@@ -69,16 +70,28 @@ export default function InfoPopup({
     event.preventDefault();
     axios
       .delete(`/api/delete-single-file/${fileId}`)
-      .then((data) => {
-        console.log(data.response);
+      .then(() => {
         setFiles(currentFiles.filter((file) => file.id !== fileId));
       })
       .catch((error) => console.error(error));
   }
 
   function enterFolder() {
-    console.log(folderUrl);
-    navigate(folderUrl);
+    navigate(`/view-folder/${folderName.replaceAll(" ", "-")}/${folderId}`);
+  }
+
+  function changeFolderName(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const formValues = Object.fromEntries(formData);
+
+    axios
+      .patch(`/api/update-single-folder/${folderId}`, formValues)
+      .then((response) => {
+        setRenameOn(false);
+        setFolderName(response.data.folder.name);
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
@@ -102,15 +115,57 @@ export default function InfoPopup({
         </>
       ) : (
         <>
-          <h3>Folder: {folderName}</h3>
-          <div className={styles.popupButtons}>
-            <button type="button" className="button" onClick={enterFolder}>
-              Enter
-            </button>
-            <button type="button" className="button">
-              Delete
-            </button>
-          </div>
+          {renameOn ? (
+            <div className={styles.folderContainer}>
+              <h3>Rename Folder</h3>
+              <p>To see changes, enter the folder </p>
+              <form
+                action="/api/update-single-folder"
+                method="put"
+                onSubmit={(e) => changeFolderName(e)}
+              >
+                <input
+                  type="text"
+                  id="newFolderName"
+                  name="updatedFolderName"
+                  placeholder="max 18 characters"
+                  maxLength={18}
+                  required
+                />
+                <div className={styles.popupButtons}>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => setRenameOn(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="button">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          ) : (
+            <>
+              <h3>Folder: {folderName}</h3>
+              <div className={styles.popupButtons}>
+                <button type="button" className="button" onClick={enterFolder}>
+                  Enter
+                </button>
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => setRenameOn(true)}
+                >
+                  Rename
+                </button>
+                <button type="button" className="button">
+                  Delete
+                </button>
+              </div>
+            </>
+          )}
         </>
       )}
     </dialog>

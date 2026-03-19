@@ -42,3 +42,13 @@
 .fileContainer strong {
   font-weight: var(--font-weight-7);
 }
+
+.folderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.folderContainer input {
+  text-align: center;
+}

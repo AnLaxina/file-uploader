@@ -12,6 +12,7 @@ export default function Folder({
   // TODO: Add ability to delete folders and update state accordingly in ViewFiles.jsx
   // * Probably check and see if there are files/folders inside before deleting anything
   const [isOpen, setIsOpen] = useState(false);
+  const [folderName, setFolderName] = useState(title);
   const dialogRef = useRef(null);
   const navigate = useNavigate();
 
@@ -42,8 +43,8 @@ export default function Folder({
       <InfoPopup
         domElement={dialogRef}
         isFile={false}
-        folderName={title}
-        folderUrl={`/view-folder/${title.replaceAll(" ", "-")}/${folderId}`}
+        folderName={folderName}
+        setFolderName={setFolderName}
         folderId={folderId}
         setIsOpen={() => setIsOpen(false)}
       />
