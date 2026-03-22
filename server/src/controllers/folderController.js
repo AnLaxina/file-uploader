@@ -24,17 +24,36 @@ export async function getAllFoldersByOwnerId(req, res, next) {
 }
 
 export async function deleteSingleFolder(req, res, next) {
-  if (!req.body) {
+  if (!req.params) {
     return res.status(400).send({ message: "Enter the folder id." });
   }
-  const selectedFolderId = req.body.selectedFolderId;
-  await prisma.folder.delete({
+  // Here, I'll check if any files exist inside a folder. If so, don't delete
+  const currentFolder = await prisma.file.findMany({
     where: {
-      id: selectedFolderId,
+      folderId: Number(req.params.folderId),
+      ownerId: Number(req.user.id),
     },
   });
 
-  return res.send({ message: "Folder deleted!" });
+  const convertedFiles = currentFolder.map((file) => {
+    return { ...file, size: Number(file.size) };
+  });
+
+  if (convertedFiles.length !== 0) {
+    return res.status(406).send({
+      message:
+        "Folder still has files. Delete them first before deleting a folder!",
+    });
+  }
+
+  await prisma.folder.delete({
+    where: {
+      id: Number(req.params.folderId),
+      ownerId: Number(req.user.id),
+    },
+  });
+
+  return res.status(201).send({ message: "Folder deleted!" });
 }
 
 export async function updateSingleFolder(req, res, next) {

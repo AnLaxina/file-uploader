@@ -17,7 +17,7 @@ folderRoute.get(
 );
 
 folderRoute.delete(
-  "/api/delete-single-folder",
+  "/api/delete-single-folder/:folderId",
   isLoggedIn,
   folderController.deleteSingleFolder,
 );
