@@ -2,9 +2,11 @@ import axios from "../../lib/axiosClient.js";
 import convertBytes from "../../lib/bytesConversion.js";
 import styles from "./infopopup.module.css";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { FolderContext } from "../../lib/FolderContext.js";
 import { useNavigate } from "react-router";
 import { X } from "lucide-react";
+import axiosClient from "../../lib/axiosClient.js";
 
 export default function InfoPopup({
   domElement = null,
@@ -21,6 +23,8 @@ export default function InfoPopup({
   const [currentFile, setCurrentFile] = useState(null);
   const [renameOn, setRenameOn] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState(null);
+  const [folders, setFolders] = useContext(FolderContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,6 +82,16 @@ export default function InfoPopup({
 
   function enterFolder() {
     navigate(`/view-folder/${folderName.replaceAll(" ", "-")}/${folderId}`);
+  }
+
+  function deleteFolder() {
+    axiosClient
+      .delete(`/api/delete-single-folder/${folderId}`)
+      .then((response) => {
+        window.alert(response.data.message);
+        setFolders(folders.filter((folder) => folderId !== folder.id));
+      })
+      .catch((error) => window.alert(error.response.data.message));
   }
 
   function changeFolderName(event) {
@@ -160,7 +174,7 @@ export default function InfoPopup({
                 >
                   Rename
                 </button>
-                <button type="button" className="button">
+                <button type="button" className="button" onClick={deleteFolder}>
                   Delete
                 </button>
               </div>

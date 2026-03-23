@@ -1,6 +1,7 @@
 import styles from "./viewfiles.module.css";
 import Folder from "../../components/Folder/Folder.jsx";
 import axiosClient from "../../lib/axiosClient.js";
+import { FolderContext } from "../../lib/FolderContext.js";
 import { useState, useEffect } from "react";
 
 export default function ViewFiles() {
@@ -27,10 +28,16 @@ export default function ViewFiles() {
 
   return (
     <section className={styles.viewFilesSection}>
-      <h2>Your Files</h2>
-      <div className={styles.folders}>
-        {folders.length === 0 ? <p>No folders! Create one!</p> : loadFolders()}
-      </div>
+      <FolderContext value={[folders, setFolders]}>
+        <h2>Your Folders</h2>
+        <div className={styles.folders}>
+          {folders.length === 0 ? (
+            <p>No folders! Create one!</p>
+          ) : (
+            loadFolders()
+          )}
+        </div>
+      </FolderContext>
     </section>
   );
 }
