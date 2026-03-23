@@ -22,6 +22,11 @@
   font-weight: var(--font-weight-6);
 }
 
+.viewFilesButtons {
+  display: flex;
+  gap: var(--size-4);
+}
+
 @media (width >= 640px) {
   .folders {
     padding: var(--size-6);
