@@ -27,6 +27,11 @@
   gap: var(--size-4);
 }
 
+.dialogHeader {
+  align-self: flex-end;
+  padding: var(--size-1);
+}
+
 @media (width >= 640px) {
   .folders {
     padding: var(--size-6);
