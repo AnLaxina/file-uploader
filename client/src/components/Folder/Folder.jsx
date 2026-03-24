@@ -1,8 +1,7 @@
 import InfoPopup from "../InfoPopup/InfoPopup";
 import styles from "./folder.module.css";
 import { useState, useRef } from "react";
-import { CircleX, Folder as FolderIcon } from "lucide-react";
-import { useNavigate } from "react-router";
+import { Folder as FolderIcon } from "lucide-react";
 
 export default function Folder({
   title = "New Folder",
@@ -13,18 +12,6 @@ export default function Folder({
   const [isOpen, setIsOpen] = useState(false);
   const [folderName, setFolderName] = useState(title);
   const dialogRef = useRef(null);
-  const navigate = useNavigate();
-
-  function enterFolder() {
-    // Eh just to make it more fancy, replace spaces with dashes
-    const newTitle = title.replaceAll(" ", "-");
-    console.log(`folderId is: ${folderId}`);
-    navigate(`/view-folder/${newTitle}/${folderId}`);
-  }
-
-  function deleteFolder() {
-    console.log("Delete this folder!");
-  }
 
   function openPopup() {
     setIsOpen(true);

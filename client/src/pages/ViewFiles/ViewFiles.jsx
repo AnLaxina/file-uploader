@@ -8,9 +8,6 @@ import { CircleX } from "lucide-react";
 
 export default function ViewFiles() {
   const [folders, setFolders] = useState([]);
-  const [uploadMessage, setUploadMessage] = useState("");
-  const [isValid, setIsValid] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
   const formRef = useRef(null);
   const dialogRef = useRef(null);
   const navigate = useNavigate();
@@ -96,12 +93,6 @@ export default function ViewFiles() {
             onSubmit={(e) => addFolder(e)}
           >
             <h3>Create New Folder</h3>
-            {uploadMessage !== "" &&
-              (isValid ? (
-                <p className={styles.validMessage}>{uploadMessage}</p>
-              ) : (
-                <p className={styles.invalidMessage}>{uploadMessage}</p>
-              ))}
             <input
               type="text"
               name="folderName"
@@ -111,15 +102,10 @@ export default function ViewFiles() {
               required
               autoFocus
             />
-            {isUploading ? (
-              <button type="submit" className="disabledButton" disabled>
-                Uploading...
-              </button>
-            ) : (
-              <button type="submit" className="button">
-                Create
-              </button>
-            )}
+
+            <button type="submit" className="button">
+              Create
+            </button>
           </form>
         </dialog>
       </FolderContext>
