@@ -17,7 +17,7 @@ export default function NavBar({ loggedIn }) {
           <>
             <li>
               <Link to="/view-files" className="button">
-                View Files
+                View Folders
               </Link>
             </li>
             <li>

@@ -10,10 +10,38 @@ export default function HomeContent() {
       {user && <h2>Welcome back {user.email}!</h2>}
       <div className={styles.instructions}>
         <h3>Instructions</h3>
-        <p>
-          Welcome to the File Uploader! You can create an account and store
-          files on the cloud!
-        </p>
+        {isAuthenticated ? (
+          <div>
+            <p>
+              View your folders and add one with the Add Folder button below!
+            </p>
+            <br />
+            <p>
+              To upload files, enter a folder that's already created and click
+              the Add Button at the bottom.
+            </p>
+            <br />
+          </div>
+        ) : (
+          <p>
+            Welcome to the File Uploader! You can create an account and store
+            files on the cloud!
+          </p>
+        )}
+
+        <ul>
+          <li>
+            <p>
+              <strong>Note:</strong> Each file can only be 24 MB.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Note:</strong> Folders can only be deleted once all files
+              in that folder are deleted as well.
+            </p>
+          </li>
+        </ul>
       </div>
       <NavBar loggedIn={isAuthenticated} />
     </section>
