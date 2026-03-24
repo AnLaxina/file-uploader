@@ -8,7 +8,6 @@ export default function Folder({
   folderId,
   parentFolderId = null,
 }) {
-  // * Probably check and see if there are files/folders inside before deleting anything
   const [isOpen, setIsOpen] = useState(false);
   const [folderName, setFolderName] = useState(title);
   const dialogRef = useRef(null);
