@@ -7,7 +7,6 @@ import { useNavigate } from "react-router";
 import { CircleX } from "lucide-react";
 
 export default function ViewFiles() {
-  // TODO: Work on adding a form for file creation, but maybe it should be on a different page or popup modal
   const [folders, setFolders] = useState([]);
   const [uploadMessage, setUploadMessage] = useState("");
   const [isValid, setIsValid] = useState(true);

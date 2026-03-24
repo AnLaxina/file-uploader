@@ -9,7 +9,6 @@ export default function Folder({
   folderId,
   parentFolderId = null,
 }) {
-  // TODO: Add ability to delete folders and update state accordingly in ViewFiles.jsx
   // * Probably check and see if there are files/folders inside before deleting anything
   const [isOpen, setIsOpen] = useState(false);
   const [folderName, setFolderName] = useState(title);
@@ -32,7 +31,6 @@ export default function Folder({
     dialogRef.current.showModal();
   }
 
-  // TODO: Instead of a physical delete button, select a folder instead and show actions to delete it via a modal
   return (
     <>
       <button className={styles.folder} onClick={openPopup} type="button">
